@@ -77,7 +77,7 @@ class Trans1 extends Phaser.Scene
     }
     create ()
     {
-        this.rect = this.add.rectangle(400, 300, 500, 200).setStrokeStyle(2, 0xffff00)
+        //this.rect = this.add.rectangle(400, 300, 500, 200).setStrokeStyle(2, 0xffff00);
 
     }
 
