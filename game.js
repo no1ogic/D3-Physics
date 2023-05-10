@@ -1,11 +1,11 @@
 class Example extends Phaser.Scene
 {
-    rect;
+    //rect;
     blocks = [];
 
     preload ()
     {
-        this.load.image('mushroom', 'assets/drop.png');
+        this.load.image('rain', 'assets/drop.png');
         this.load.image('bound', 'assets/bound.png');
         this.load.image('cloud', 'assets/cloud.png');
         this.load.image('dbacc','assets/bacc.png');
@@ -23,9 +23,10 @@ class Example extends Phaser.Scene
         {
             const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
 
-            const block = this.physics.add.sprite(pos.x, pos.y, 'mushroom').setScale(3);
+            var block = this.physics.add.sprite(pos.x, pos.y, 'rain').setScale(Phaser.Math.Between(1,3));
+            block.setGravityY(Phaser.Math.Between(10,1000));
 
-            block.setBounce(1).setCollideWorldBounds(true);
+            block.setBounce(1.1).setCollideWorldBounds(true);
 
             Phaser.Math.RandomXY(block.body.velocity, 200);
 
@@ -47,7 +48,7 @@ class Example extends Phaser.Scene
             else{
                 let disp = this.add.text(400,300, qodiesInRect.length, {fontSize: 200}).setOrigin(0.5,0.5)
             }
-                console.log(qodiesInRect.length)
+                //console.log(config.arcade)
 
 
         })
@@ -56,7 +57,7 @@ class Example extends Phaser.Scene
 
     update ()
     {
-        Phaser.Actions.SetAlpha(this.blocks, 0.8);
+        Phaser.Actions.SetAlpha(this.blocks, 0.4);
         
 
         const { left, top, width, height } = this.rect.getBounds();
@@ -86,7 +87,7 @@ class Trans1 extends Phaser.Scene
 
     }
 }
-const config = {
+var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
@@ -94,7 +95,7 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 200 },
+            //gravity: { x: 100, y: 200 },
             debug: false
         }
     },
